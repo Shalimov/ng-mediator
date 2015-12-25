@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<section data-ng-controller="ctrl">
+  <section data-ng-controller="ctrl1" data-ng-if="tctrl1">
+    <button data-ng-click="click()">Here click</button>
+  </section>
+  <section data-ng-controller="ctrl2" data-ng-if="tctrl2">Hello World 2</section>
+  <section data-ng-controller="ctrl3" data-ng-if="tctrl3">
+    <button data-ng-click="click()">Leave</button>
+  </section>
+
+  <button data-ng-click="toggle('tctrl1')">Toggle ctrl1</button>
+  <button data-ng-click="toggle('tctrl2')">Toggle ctrl2</button>
+  <button data-ng-click="toggle('tctrl3')">Toggle ctrl3</button>
+</section>
+
+
+<script src="../vendor/angular/angular.min.js"></script>
+<script src="../vendor/jsmediator/mediator.js"></script>
+<script src="../vendor/is-emitter/dist/event-emitter.min.js"></script>
+<script src="../ng-mediator.js"></script>
+<script src="app.js"></script>
+<script src="controllers/ctrl.js"></script>
+<script src="controllers/ctrl1.js"></script>
+<script src="controllers/ctrl2.js"></script>
+<script src="controllers/ctrl3.js"></script>
+</body>
+</html>
