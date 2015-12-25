@@ -1,0 +1,29 @@
+{
+  "name": "ng-mediator",
+  "version": "1.0.0",
+  "description": "Mediator provide for angular app",
+  "main": "ng-mediator.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shalimov/ng-mediator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shalimov/ng-mediator/issues"
+  },
+  "homepage": "https://github.com/Shalimov/ng-mediator",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-strip-comments": "^1.1.2",
+    "gulp-uglify": "^1.5.1"
+  }
+}
