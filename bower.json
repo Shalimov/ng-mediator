@@ -1,0 +1,24 @@
+{
+  "name": "ng-mediator",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Shalimov/ng-mediator",
+  "authors": [
+    "Shalimov <Shalimich@gmail.com>"
+  ],
+  "description": "Mediator pattern for ng-app",
+  "keywords": [
+    "mediator",
+    "ng",
+    "angular",
+    "event",
+    "eventemitter"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
