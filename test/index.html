@@ -2,31 +2,133 @@
 <html lang="en" data-ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Test</title>
+  <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+  <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap-theme.min.css" type="text/css"/>
+  <style>
+    .selected {
+      background: #1cF;
+    }
+  </style>
 </head>
 <body>
 
-<section data-ng-controller="ctrl">
-  <section data-ng-controller="ctrl1" data-ng-if="tctrl1">
-    <button data-ng-click="click()">Here click</button>
-  </section>
-  <section data-ng-controller="ctrl2" data-ng-if="tctrl2">Hello World 2</section>
-  <section data-ng-controller="ctrl3" data-ng-if="tctrl3">
-    <button data-ng-click="click()">Leave</button>
-  </section>
+<section class="container-fluid">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
 
-  <button data-ng-click="toggle('tctrl1')">Toggle ctrl1</button>
-  <button data-ng-click="toggle('tctrl2')">Toggle ctrl2</button>
-  <button data-ng-click="toggle('tctrl3')">Toggle ctrl3</button>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <section class="row">
+    <section class="col-sm-6" data-ng-controller="tableCtrl as tb">
+      <table class="table table-bordered table-responsive table-stripped">
+        <thead>
+        <tr>
+          <th>
+            <button data-ng-click="tb.handlers.add()">+</button>
+          </th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="row in tb.rows track by $index" data-ng-class="{'selected': row.selected}">
+          <td>
+            <button data-ng-click="tb.handlers.select(row)"><strong>{{::$index + 1}}</strong></button>
+          </td>
+          <td>
+            <input class="form-control" data-ng-model="row.title"/>
+          </td>
+          <td>
+            <input class="form-control" data-ng-model="row.description"/>
+          </td>
+          <td>
+            <button data-ng-click="tb.handlers.remove(row)">-</button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="4">Records: {{tb.rows.length}}</td>
+        </tr>
+        </tfoot>
+      </table>
+    </section>
+    <section class="col-sm-6" data-ng-controller="historyCtrl as hs">
+      <fieldset>
+        <legend>History</legend>
+        <ul class="list-group">
+          <li class="list-group-item" data-ng-repeat="item in hs.history track by $index">{{item}}</li>
+        </ul>
+      </fieldset>
+    </section>
+  </section>
 </section>
 
-
+<script src="../vendor/jquery/dist/jquery.min.js"></script>
 <script src="../vendor/angular/angular.min.js"></script>
+<script src="../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../dist/ng-mediator.min.js"></script>
+
 <script src="app.js"></script>
 <script src="controllers/ctrl.js"></script>
-<script src="controllers/ctrl1.js"></script>
-<script src="controllers/ctrl2.js"></script>
+<script src="controllers/table-ctrl.js"></script>
+<script src="controllers/history-ctrl.js"></script>
 <script src="controllers/ctrl3.js"></script>
 </body>
 </html>

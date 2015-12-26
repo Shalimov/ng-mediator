@@ -14,7 +14,7 @@
   };
 
   ng.module('is.emitter', [])
-    .factory('EventEmitterFactory', function () {
+    .factory('$emitterFactory', function () {
       return {
         create: function (settings) {
           return new EventEmitter(settings);
@@ -26,6 +26,7 @@
     .provider('$mediator', function () {
       var emitterSettings;
       var mediatorSettings;
+      var componentStorages = {};
 
       this.setEventEmitterSettings = function (settings) {
         emitterSettings = settings;
@@ -35,15 +36,13 @@
         mediatorSettings = settings;
       };
 
-      this.$get = ['EventEmitterFactory', function (emitterFactory) {
-        var $mediator = new Mediator(emitterFactory.create(emitterSettings), mediatorSettings);
+      this.$get = ['$emitterFactory', function ($emitterFactory) {
+        var $mediator = new Mediator($emitterFactory.create(emitterSettings), mediatorSettings);
 
         return {
-          store: {},
-
           add: function (name, register, scope) {
             var self = this;
-            var storage = self.store[name] = new StorageBuilder();
+            var storage = componentStorages[name] = new StorageBuilder();
 
             $mediator.addComponent(name, register.bind(storage));
 
@@ -56,11 +55,15 @@
 
           remove: function (name) {
             $mediator.removeComponent(name);
-            delete this.store[name];
+            delete componentStorages[name];
           },
 
           has: function (name) {
             return $mediator.hasComponent(name);
+          },
+
+          getStorage: function (name) {
+            return componentStorages[name];
           },
 
           get: function (name) {
